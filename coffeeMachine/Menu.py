@@ -1,36 +1,37 @@
-class icecekler():
-    def __init__(self , ismi , fiyati,su,kahve,sut):
-        self.kahveIsmi=ismi
-        self.Fiyat=fiyati
-        self.malzemeler={
-            "su": su,
-            "kahve":kahve,
-            "sut":sut
+class Menu():
+    kahveler = [
+        {
+            'isim': "expresso",
+            'water': 75,
+            'milk': 50,
+            'coffee': 60,
+            'money': 2
+        },
+        {
+            'isim': "latte",
+            'water': 60,
+            'milk': 70,
+            'coffee': 80,
+            'money': 2.5
+        },
+        {
+            'isim': "cappucino",
+            'water': 40,
+            'milk': 80,
+            'coffee': 70,
+            'money': 3
         }
-        
-        
-    
-        
+    ]
+    def __init__(self):
 
-class menu():
-    icecekler=["latte","espresso","su"]
-    
-    def __init__(self) :
-        self.icecek=[
-            icecekler("latte",15,200,2,200),
-            icecekler("espresso",20,400,4,0),
-            icecekler("su",5,500,0,0)
-        ]
-        
-        
-    def kahveAra(self,kahveIsmi):
-        for oge in self.icecek:
-            if(oge.kahveIsmi==kahveIsmi):
-                return oge
-        return -1
-        
-        
-    def kahveleriGoster(self):
-        print("iceceklerimiz :")
-        for x in self.icecekler:
-            print(x)
+        print("kahvelerimiz : 1.expresso, 2.latte , 3.cappucino  ")
+
+    def kahveniSec(self):
+        kahveSecimim=input("Istediginiz kahvenin ismini giriniz : ")
+        if (kahveSecimim=="latte"):
+            kahveSecimim=2
+        elif(kahveSecimim=="cappucino"):
+            kahveSecimim=3
+        else:
+            kahveSecimim=1
+        return self.kahveler[kahveSecimim-1]

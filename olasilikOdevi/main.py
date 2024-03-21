@@ -260,6 +260,40 @@ def floatVeriler():
         print(directory)
 
 
+        dortteBirlikList=[]
+        n1=N/4
+        n2=(3*N)/4
+        count1=0
+        count2=0
+        for x in EF:
+
+            if n1<x:
+                break
+            count1 += 1
+
+        for x in EF:
+            if n2<x:
+                break
+            count2 += 1
+
+        if count1 == 0:
+            j1 = n1
+        else:
+            j1 = n1 - EF[count1 - 1]
+        if count2 == 0:
+            j2 = n2
+        else:
+            j2 = n2 - EF[count2 - 1]
+        dortteBirlikList.append(((j1*H)/frekans[count1])+sinifMinDeger[count1])
+        dortteBirlikList.append(((j2*H)/frekans[count2])+sinifMinDeger[count2])
+        print(f"count1 {count1} --count2 {count2} -- frekans count 1 {frekans[count1]} -- frekans count 2 {frekans[count2]} -- sinifmindeger 1 {sinifMinDeger[count1-1]} sinif min deger 2 {sinifMinDeger[count2-1]}  j1 {j1}  j2 {j2}")
+
+        tkinter.messagebox.showinfo(title="Dortte Birlik ",message=f"Q1 : {dortteBirlikList[0]}  "
+                                                                    f"Q3 : {dortteBirlikList[1]}")
+
+
+
+
     def aritmetikModMedyanFonk():
         sum=0
         for x in datas:
@@ -442,6 +476,7 @@ def intVeriler():
         liste.clear()
 
     def tablo():
+
         N = int(len(datas))
         if math.sqrt(len(datas)) > int(math.sqrt(len(datas))):
             K = int(math.sqrt(len(datas)) + 1)
@@ -537,40 +572,73 @@ def intVeriler():
 
         print(directory)
 
-    def aritmetikModMedyanFonk():
-        sum = 0
-        for x in datas:
-            sum += x
-        ort = float(sum / len(datas))
+        dortteBirlikList = []
+        n1 = N / 4
+        j1=0
+        j2=0
+        n2 = (3 * N) / 4
+        count1 = 0
+        count2 = 0
+        for x in EF:
 
-        mod = 0
-        tekrarlar = {}
-        for x in datas:
-            if x in tekrarlar:
-                tekrarlar[x] += 1
-            else:
-                tekrarlar[x] = 1
-        for x, y in tekrarlar.items():
-            enBuyuk = max(tekrarlar.values())
-            if y == enBuyuk:
-                mod = x
+            if n1 < x:
+                break
+            count1 += 1
 
-        sortList=sorted(datas)
-        if len(datas) % 2 == 0:
-            ortaDeger = int(len(datas) / 2)
-
-            sum = int(sortList[ortaDeger] + sortList[ortaDeger - 1])
-            medyan = float(sum / 2)
+        for x in EF:
+            if n2 < x:
+                break
+            count2 += 1
+        if count1==0:
+            j1=n1
         else:
-            ortaDeger = int((len(datas) + 1) / 2)
-            medyan = int(sortList[ortaDeger - 1])
+            j1 = n1 - EF[count1 - 1]
+        if count2==0:
+            j2=n2
+        else:
+            j2 = n2 - EF[count2 - 1]
+        dortteBirlikList.append(((j1 * H) / frekans[count1]) + sinifMinDeger[count1])
+        dortteBirlikList.append(((j2 * H) / frekans[count2]) + sinifMinDeger[count2])
 
-        tkinter.messagebox.showinfo(message=f"""
-    aritmetik ortalama : {ort}
-    mod :{mod}
-    meydan : {medyan} 
-            """)
-        return ort
+        tkinter.messagebox.showinfo(title="Dortte Birlik ", message=f"Q1 : {dortteBirlikList[0]}  "
+                                                                f"Q3 : {dortteBirlikList[1]}")
+
+
+    def aritmetikModMedyanFonk():
+            sum = 0
+            for x in datas:
+                sum += x
+            ort = float(sum / len(datas))
+
+            mod = 0
+            tekrarlar = {}
+            for x in datas:
+                if x in tekrarlar:
+                    tekrarlar[x] += 1
+                else:
+                    tekrarlar[x] = 1
+            for x, y in tekrarlar.items():
+                enBuyuk = max(tekrarlar.values())
+                if y == enBuyuk:
+                    mod = x
+
+            sortList=sorted(datas)
+            if len(datas) % 2 == 0:
+                ortaDeger = int(len(datas) / 2)
+
+                sum = int(sortList[ortaDeger] + sortList[ortaDeger - 1])
+                medyan = float(sum / 2)
+            else:
+                ortaDeger = int((len(datas) + 1) / 2)
+                medyan = int(sortList[ortaDeger - 1])
+
+            tkinter.messagebox.showinfo(message=f"""
+        aritmetik ortalama : {ort}
+        mod :{mod}
+        meydan : {medyan} 
+                """)
+            return ort
+
 
     def hoGo():
         carpim = 1
@@ -586,7 +654,7 @@ def intVeriler():
         tkinter.messagebox.showinfo(message=f"""
     geometrik ortalama : {carpim}
     hastonomik ortalama : {gO}
-
+    
             """)
 
     def orneklemSapmaOms():
@@ -638,6 +706,7 @@ degisim katsayi : {degisimKatsayisi}
 
 
 
+
     window.minsize(350, 350)
     labelData = Label(text="verileri giriniz :", bg="black", fg="white")
     labelData.place(x=30, y=70)
@@ -670,6 +739,8 @@ text="""aritmetik,mod,medyan
 varyans,sapma,OMS
 carpiklik,baskililik,degisim""", command=carbasdeg,fg="white",bg="black")
     varyansSapmaOms.place(x=10, y=220)
+
+
 
     inputData.bind('<Return>', veriEkle)
 def main():

@@ -6,6 +6,168 @@ import pandas
 from collections import Counter
 window=Tk()
 
+def naiveBayesToplamOLasilik():
+    removeWidget()
+    window.title("basicRandomNumber")
+    window.minsize(800, 300)
+    window.configure(bg="black")
+    global naiveBayes
+    global toplamOlasilik
+    def sorular():
+        allQuestion=["Istenilen olay (E) olsun bu E olayina gore kosullarin olasiligini mi istiyorsunuz ","Sonuç olarak bir olayın genel olasılığını mı bulmak istiyorsunuz","bir olayın gerçekleşme olasılığını, bu olayın farklı olası koşullar altında hesaplayarak mi bulmak istiyorsunuz","Bir olayın gerçekleşme olasılığını, önceden bilinen bir testin sonucuna dayanarak mı hesaplamak istiyorsunuz?"]
+        L1 = Label(text="1. "+allQuestion[0],fg="white" ,bg="black")
+        L1.place(x=30, y=60)
+        L2 = Label(text="2. "+allQuestion[1],fg="white" ,bg="black")
+        L2.place(x=30, y=100)
+        L3 = Label(text="3. "+allQuestion[2], fg="white", bg="black")
+        L3.place(x=30, y=140)
+        L4 = Label(text="4. "+allQuestion[3], fg="white", bg="black")
+        L4.place(x=30, y=180)
+
+    def hesapla():
+        naiveBayes=0
+        toplamOlasilik=0
+        cevaplarString=cevaplar.get().strip().lower().split(",")
+        if("evet" in cevaplarString[0]):
+            naiveBayes+=1
+        else:
+            toplamOlasilik+=1
+        if ("evet" in cevaplarString[1]):
+            toplamOlasilik+=1
+        else:
+            naiveBayes+=1
+        if ("evet" in cevaplarString[2]):
+            toplamOlasilik+=1
+        else:
+            naiveBayes+=1
+        if ("evet" in cevaplarString[3]):
+            naiveBayes += 1
+        else:
+            toplamOlasilik += 1
+        if(toplamOlasilik>naiveBayes):
+
+            removeWidget()
+            window.title("basicRandomNumber")
+            window.minsize(550, 350)
+            window.configure(bg="black")
+            kosulSayisi=cevaplarString[4]
+            kosullar = Entry(width=25)
+            kosullar.place(x=150, y=70)
+            NotKosullar = Label(text="lutfen kosullarin tek tek degerlerini sirayla (,) ile ayirarak bu kutucuga yaziniz",
+                        fg="white", bg="black", font="Verdana 8")
+            NotKosullar.place(x=50, y=100)
+            kosulluOlasiliklar = Entry(width=25)
+            kosulluOlasiliklar.place(x=150, y=170)
+            NotKosulluOlasiliklar = Label(text="lutfen A'ya gore B'nin kosullu olasililarini ustteki sirayla (,) ile ayirarak bu kutucuga yaziniz",
+                        fg="white", bg="black", font="Verdana 8")
+            NotKosulluOlasiliklar.place(x=30, y=200)
+            def toplamOlasilikHesapla():
+                toplam=0
+                kosullarString=kosullar.get().strip().lower().split(",")
+                kosulluOlasiliklarString = kosulluOlasiliklar.get().strip().lower().split(",")
+                for x in range(int(kosulSayisi)):
+                    toplam+=float(kosullarString[x])*float(kosulluOlasiliklarString[x])
+
+                tkinter.messagebox.showinfo(title="toplam OLasilik", message=str(toplam))
+
+            gonder = Button(text="gonder", command=toplamOlasilikHesapla, fg="white", bg="black")
+            gonder.place(x=150, y=230)
+
+
+        else:
+            removeWidget()
+            window.title("basicRandomNumber")
+            window.minsize(550, 350)
+            window.configure(bg="black")
+            kosulSayisi = cevaplarString[4]
+            kosullar = Entry(width=25)
+            kosullar.place(x=150, y=70)
+            NotKosullar = Label(
+                text="lutfen kosullarin tek tek degerlerini sirayla (,) ile ayirarak bu kutucuga yaziniz",
+                fg="white", bg="black", font="Verdana 8")
+            NotKosullar.place(x=50, y=100)
+            kosulluOlasiliklar = Entry(width=25)
+            kosulluOlasiliklar.place(x=150, y=170)
+            NotKosulluOlasiliklar = Label(
+                text="lutfen A'ya gore B'nin kosullu olasililarini ustteki sirayla (,) ile ayirarak bu kutucuga yaziniz",
+                fg="white", bg="black", font="Verdana 8")
+            NotKosulluOlasiliklar.place(x=30, y=200)
+            sart = Entry(width=5)
+            sart.place(x=450, y=10)
+            sartLabel = Label(
+                text="Hangi sartin bayesini bulmak istersin kosul olasiliginin sirasina gore yaz",
+                fg="white", bg="black", font="Verdana 8")
+            sartLabel.place(x=30, y=10)
+
+            def bayesHesapla():
+                toplam=0
+                kosullarString = kosullar.get().strip().lower().split(",")
+                kosulluOlasiliklarString = kosulluOlasiliklar.get().strip().lower().split(",")
+                sartInt=int(sart.get())-1
+                for x in range(int(kosulSayisi)):
+                    toplam += float(kosullarString[x]) * float(kosulluOlasiliklarString[x])
+                toplam=(float(kosullarString[sartInt]) * float(kosulluOlasiliklarString[sartInt]))/toplam
+
+                tkinter.messagebox.showinfo(title="toplam OLasilik", message=str(toplam))
+
+            gonder = Button(text="gonder", command=bayesHesapla, fg="white", bg="black")
+            gonder.place(x=150, y=230)
+
+
+    sorular()
+    geri = Button(text="<--", fg="white", bg="black", highlightthickness=0, command=main)
+    geri.place(x=10, y=10)
+    cevaplar = Entry(width=25)
+    cevaplar.place(x=300, y=220)
+    Not = Label(text="lutfen tum cevaplari sirasiyla aralarinda (,) ile ayirarak bu kutucuga yaziniz", fg="white", bg="black",font="Verdana 8")
+    Not.place(x=200,y=260)
+    gonder = Button(text="gonder", command=hesapla, fg="white", bg="black")
+    gonder.place(x=510, y=217)
+
+def kesikliRasgeleDegisenlerinDagilimi():
+    removeWidget()
+    window.title("basicRandomNumber")
+    window.minsize(800, 300)
+    window.configure(bg="black")
+    allQuestion=["Duzgun dagilima sahip mi veya esit olasiliga sahiptir ifadesi geciyor mu","Deneyde sadece 2 sonuc var 0 ya da 1 olma olasiligini soruyorsa","Belli bir deneme sayisindan sonra (k) sayida  basarili olma olasiligini soruyor mu ","Belli bir deneme sonrasinda ilk basarili olma olasiligini soruyor mu ","Belli bir deneme sayisindan sonra (k) sayida  basariya ulasmak icin gereken denemeye sayisi modelliyor mu","Soru icinde λ isareti geciyor mu "]
+    L1 = Label(text="1. " + allQuestion[0], fg="white", bg="black")
+    L1.place(x=30, y=20)
+    L2 = Label(text="2. " + allQuestion[1], fg="white", bg="black")
+    L2.place(x=30, y=50)
+    L3 = Label(text="3. " + allQuestion[2], fg="white", bg="black")
+    L3.place(x=30, y=80)
+    L4 = Label(text="4. " + allQuestion[3], fg="white", bg="black")
+    L4.place(x=30, y=110)
+    L5 = Label(text="5. " + allQuestion[4], fg="white", bg="black")
+    L5.place(x=30, y=140)
+    L6 = Label(text="6. " + allQuestion[5], fg="white", bg="black")
+    L6.place(x=30, y=170)
+    NotKosullar = Label(text="Bu seceneklerden hicbiri degil ise hipergeometrik dagilimdir ",
+                        fg="white", bg="black", font="Verdana 8")
+    NotKosullar.place(x=30, y=200)
+    cevaplar = Entry(width=5)
+    cevaplar.place(x=200, y=230)
+    def yazdir():
+        cevap=cevaplar.get()
+        if(cevap=="1"):
+            tkinter.messagebox.showinfo(title="toplam OLasilik", message="Duzgun Dagilim")
+        if (cevap == "2"):
+            tkinter.messagebox.showinfo(title="toplam OLasilik", message="Bernoulli Dagilim")
+        if (cevap == "3"):
+            tkinter.messagebox.showinfo(title="toplam OLasilik", message="Binom dagilim")
+        if (cevap == "4"):
+            tkinter.messagebox.showinfo(title="toplam OLasilik", message="Geometrik Dagilim")
+        if (cevap == "5"):
+            tkinter.messagebox.showinfo(title="toplam OLasilik", message="Negatif Binom Dağılımı")
+        if (cevap == "6"):
+            tkinter.messagebox.showinfo(title="toplam OLasilik", message="Passion Dagilim")
+
+
+    gonder = Button(text="gonder",command=yazdir, fg="white", bg="black")
+    gonder.place(x=250, y=227)
+
+
+
 def removeWidget():
     for widget in window.winfo_children():
         widget.destroy()
@@ -760,6 +922,15 @@ def main():
 
     int = Button(text="int veriler", command=intVeriler, fg="white", bg="black")
     int.place(x=200, y=330)
+
+
+    naivebayesToplamOlasilikButton = Button(text="naive bayes & toplam olasilik", command=naiveBayesToplamOLasilik, fg="white", bg="black")
+    naivebayesToplamOlasilikButton.place(x=50, y=130)
+
+    kesikliRasgeleDegisenlerinDagilimiButton = Button(text="kesikli Rasgelese Degisenlerin Dagilimi",command=kesikliRasgeleDegisenlerinDagilimi,
+                                      fg="white", bg="black")
+    kesikliRasgeleDegisenlerinDagilimiButton.place(x=50, y=50)
+
     window.mainloop()
 
 main()

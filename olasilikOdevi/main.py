@@ -3,25 +3,24 @@ import tkinter.messagebox
 from tkinter import *
 import random
 import pandas
-from collections import Counter
 window=Tk()
 
 def naiveBayesToplamOLasilik():
     removeWidget()
     window.title("basicRandomNumber")
-    window.minsize(800, 300)
-    window.configure(bg="black")
+    window.minsize(800, 600)
+    window.configure(bg="white")
     global naiveBayes
     global toplamOlasilik
     def sorular():
         allQuestion=["Istenilen olay (E) olsun bu E olayina gore kosullarin olasiligini mi istiyorsunuz ","Sonuç olarak bir olayın genel olasılığını mı bulmak istiyorsunuz","bir olayın gerçekleşme olasılığını, bu olayın farklı olası koşullar altında hesaplayarak mi bulmak istiyorsunuz","Bir olayın gerçekleşme olasılığını, önceden bilinen bir testin sonucuna dayanarak mı hesaplamak istiyorsunuz?"]
-        L1 = Label(text="1. "+allQuestion[0],fg="white" ,bg="black")
+        L1 = Label(text="1. "+allQuestion[0],fg="pink" ,bg="white")
         L1.place(x=30, y=60)
-        L2 = Label(text="2. "+allQuestion[1],fg="white" ,bg="black")
+        L2 = Label(text="2. "+allQuestion[1],fg="pink" ,bg="white")
         L2.place(x=30, y=100)
-        L3 = Label(text="3. "+allQuestion[2], fg="white", bg="black")
+        L3 = Label(text="3. "+allQuestion[2], fg="pink", bg="white")
         L3.place(x=30, y=140)
-        L4 = Label(text="4. "+allQuestion[3], fg="white", bg="black")
+        L4 = Label(text="4. "+allQuestion[3], fg="pink", bg="white")
         L4.place(x=30, y=180)
 
     def hesapla():
@@ -48,18 +47,18 @@ def naiveBayesToplamOLasilik():
 
             removeWidget()
             window.title("basicRandomNumber")
-            window.minsize(550, 350)
-            window.configure(bg="black")
+            window.minsize(600, 600)
+            window.configure(bg="white")
             kosulSayisi=cevaplarString[4]
             kosullar = Entry(width=25)
             kosullar.place(x=150, y=70)
             NotKosullar = Label(text="lutfen kosullarin tek tek degerlerini sirayla (,) ile ayirarak bu kutucuga yaziniz",
-                        fg="white", bg="black", font="Verdana 8")
+                        fg="pink", bg="white", font="Verdana 15")
             NotKosullar.place(x=50, y=100)
             kosulluOlasiliklar = Entry(width=25)
             kosulluOlasiliklar.place(x=150, y=170)
             NotKosulluOlasiliklar = Label(text="lutfen A'ya gore B'nin kosullu olasililarini ustteki sirayla (,) ile ayirarak bu kutucuga yaziniz",
-                        fg="white", bg="black", font="Verdana 8")
+                        fg="pink", bg="white", font="Verdana 15")
             NotKosulluOlasiliklar.place(x=30, y=200)
             def toplamOlasilikHesapla():
                 toplam=0
@@ -70,33 +69,33 @@ def naiveBayesToplamOLasilik():
 
                 tkinter.messagebox.showinfo(title="toplam OLasilik", message=str(toplam))
 
-            gonder = Button(text="gonder", command=toplamOlasilikHesapla, fg="white", bg="black")
+            gonder = Button(text="gonder", command=toplamOlasilikHesapla, fg="pink", bg="white")
             gonder.place(x=150, y=230)
 
 
         else:
             removeWidget()
             window.title("basicRandomNumber")
-            window.minsize(550, 350)
-            window.configure(bg="black")
+            window.minsize(600, 600)
+            window.configure(bg="white")
             kosulSayisi = cevaplarString[4]
             kosullar = Entry(width=25)
             kosullar.place(x=150, y=70)
             NotKosullar = Label(
                 text="lutfen kosullarin tek tek degerlerini sirayla (,) ile ayirarak bu kutucuga yaziniz",
-                fg="white", bg="black", font="Verdana 8")
+                fg="pink", bg="white", font="Verdana 8")
             NotKosullar.place(x=50, y=100)
             kosulluOlasiliklar = Entry(width=25)
             kosulluOlasiliklar.place(x=150, y=170)
             NotKosulluOlasiliklar = Label(
                 text="lutfen A'ya gore B'nin kosullu olasililarini ustteki sirayla (,) ile ayirarak bu kutucuga yaziniz",
-                fg="white", bg="black", font="Verdana 8")
+                fg="pink", bg="white", font="Verdana 8")
             NotKosulluOlasiliklar.place(x=30, y=200)
             sart = Entry(width=5)
             sart.place(x=450, y=10)
             sartLabel = Label(
                 text="Hangi sartin bayesini bulmak istersin kosul olasiliginin sirasina gore yaz",
-                fg="white", bg="black", font="Verdana 8")
+                fg="pink", bg="white", font="Verdana 8")
             sartLabel.place(x=30, y=10)
 
             def bayesHesapla():
@@ -110,40 +109,40 @@ def naiveBayesToplamOLasilik():
 
                 tkinter.messagebox.showinfo(title="toplam OLasilik", message=str(toplam))
 
-            gonder = Button(text="gonder", command=bayesHesapla, fg="white", bg="black")
+            gonder = Button(text="gonder", command=bayesHesapla, fg="pink", bg="white")
             gonder.place(x=150, y=230)
 
 
     sorular()
-    geri = Button(text="<--", fg="white", bg="black", highlightthickness=0, command=main)
+    geri = Button(text="<--", fg="pink", bg="white", highlightthickness=0, command=main)
     geri.place(x=10, y=10)
     cevaplar = Entry(width=25)
     cevaplar.place(x=300, y=220)
     Not = Label(text="lutfen tum cevaplari sirasiyla aralarinda (,) ile ayirarak bu kutucuga yaziniz", fg="white", bg="black",font="Verdana 8")
     Not.place(x=200,y=260)
-    gonder = Button(text="gonder", command=hesapla, fg="white", bg="black")
+    gonder = Button(text="gonder", command=hesapla, fg="pink", bg="white")
     gonder.place(x=510, y=217)
 
 def kesikliRasgeleDegisenlerinDagilimi():
     removeWidget()
     window.title("basicRandomNumber")
-    window.minsize(800, 300)
-    window.configure(bg="black")
+    window.minsize(800, 600)
+    window.configure(bg="white")
     allQuestion=["Duzgun dagilima sahip mi veya esit olasiliga sahiptir ifadesi geciyor mu","Deneyde sadece 2 sonuc var 0 ya da 1 olma olasiligini soruyorsa","Belli bir deneme sayisindan sonra (k) sayida  basarili olma olasiligini soruyor mu ","Belli bir deneme sonrasinda ilk basarili olma olasiligini soruyor mu ","Belli bir deneme sayisindan sonra (k) sayida  basariya ulasmak icin gereken denemeye sayisi modelliyor mu","Soru icinde λ isareti geciyor mu "]
-    L1 = Label(text="1. " + allQuestion[0], fg="white", bg="black")
+    L1 = Label(text="1. " + allQuestion[0], fg="pink", bg="white")
     L1.place(x=30, y=20)
-    L2 = Label(text="2. " + allQuestion[1], fg="white", bg="black")
+    L2 = Label(text="2. " + allQuestion[1], fg="pink", bg="white")
     L2.place(x=30, y=50)
-    L3 = Label(text="3. " + allQuestion[2], fg="white", bg="black")
+    L3 = Label(text="3. " + allQuestion[2], fg="pink", bg="white")
     L3.place(x=30, y=80)
-    L4 = Label(text="4. " + allQuestion[3], fg="white", bg="black")
+    L4 = Label(text="4. " + allQuestion[3], fg="pink", bg="white")
     L4.place(x=30, y=110)
-    L5 = Label(text="5. " + allQuestion[4], fg="white", bg="black")
+    L5 = Label(text="5. " + allQuestion[4], fg="pink", bg="white")
     L5.place(x=30, y=140)
-    L6 = Label(text="6. " + allQuestion[5], fg="white", bg="black")
+    L6 = Label(text="6. " + allQuestion[5], fg="pink", bg="white")
     L6.place(x=30, y=170)
     NotKosullar = Label(text="Bu seceneklerden hicbiri degil ise hipergeometrik dagilimdir ",
-                        fg="white", bg="black", font="Verdana 8")
+                        fg="pink", bg="white", font="Verdana 8")
     NotKosullar.place(x=30, y=200)
     cevaplar = Entry(width=5)
     cevaplar.place(x=200, y=230)
@@ -163,7 +162,7 @@ def kesikliRasgeleDegisenlerinDagilimi():
             tkinter.messagebox.showinfo(title="toplam OLasilik", message="Passion Dagilim")
 
 
-    gonder = Button(text="gonder",command=yazdir, fg="white", bg="black")
+    gonder = Button(text="gonder",command=yazdir, fg="pink", bg="white")
     gonder.place(x=250, y=227)
 
 
@@ -195,29 +194,29 @@ def basicRandomNumber():
         tkinter.messagebox.showinfo(title="product numbers",message=str(numbers))
 
     window.title("basicRandomNumber")
-    window.minsize(300, 300)
-    window.configure(bg="black")
+    window.minsize(600, 600)
+    window.configure(bg="white")
 
-    minLabel = Label(text="minimum sayiyi giriniz :",fg="white" ,bg="black")
+    minLabel = Label(text="minimum sayiyi giriniz :",fg="pink" ,bg="white")
     minLabel.place(x=10, y=100)
 
     minInput = Entry(width=6)
     minInput.place(x=200, y=100)
 
-    geri = Button(text="<--", fg="white", bg="black", highlightthickness=0, command=main)
+    geri = Button(text="<--", fg="pink", bg="white", highlightthickness=0, command=main)
     geri.place(x=10, y=10)
 
-    maxLabel = Label(text="maxsimum sayiyi giriniz :" ,fg="white" ,bg="black")
+    maxLabel = Label(text="maxsimum sayiyi giriniz :" ,fg="pink" ,bg="white")
     maxLabel.place(x=10, y=150)
     maxInput = Entry(width=6)
     maxInput.place(x=200, y=150)
 
-    nLabel = Label(text="kac tane deger uretilecek:" ,fg="white" ,bg="black")
+    nLabel = Label(text="kac tane deger uretilecek:" ,fg="pink" ,bg="white")
     nLabel.place(x=10, y=200)
     nInput = Entry(window, width=6)
     nInput.place(x=200, y=200)
 
-    hesapla = Button(text="hesapla", command=createRandomNubmer ,fg="white" ,bg="black")
+    hesapla = Button(text="hesapla", command=createRandomNubmer ,fg="pink" ,bg="white")
     hesapla.place(x=190, y=250)
 
     nInput.bind('<Return>', createRandomNubmer)
@@ -242,11 +241,11 @@ def systematicNumber():
         tkinter.messagebox.showinfo(title="Producter numbers",message=str(numbers))
 
 
-    window.wm_minsize(300,300)
-    window.configure(background="black")
+    window.wm_minsize(600,600)
+    window.configure(background="white")
     window.title("systematicNumber")
 
-    maxLabel=Label(text="Evrenin boyutunu giriniz :" ,bg="black",fg="white")
+    maxLabel=Label(text="Evrenin boyutunu giriniz :" ,bg="pink",fg="white")
     maxLabel.place(x=10,y=100)
     maxInput=Entry(width=6)
     maxInput.place(x=210,y=100)
@@ -254,12 +253,12 @@ def systematicNumber():
     geri = Button(text="<--", fg="white", bg="black", highlightthickness=0, command=main)
     geri.place(x=10, y=10)
 
-    nLabel = Label(text="Kac tane deger uretilecek:", fg="white", bg="black")
+    nLabel = Label(text="Kac tane deger uretilecek:", fg="pink", bg="white")
     nLabel.place(x=10, y=150)
     nInput = Entry(window, width=6)
     nInput.place(x=210, y=150)
 
-    hesapla = Button(text="Hesapla",command=createNumber, fg="white", bg="black")
+    hesapla = Button(text="Hesapla",command=createNumber, fg="pink", bg="white")
     hesapla.place(x=200, y=200)
 
     nInput.bind('<Return>', createNumber)
@@ -275,8 +274,6 @@ def floatVeriler():
 
 
 
-    def verTemizle(e=None):
-        datas.clear()
 
     def veriEkle(e=None):
         if(inputData.get()!=""):
@@ -552,38 +549,37 @@ OMS : {oms}""")
 carpiklik : {carpiklik}
 degisim katsayi : {degisimKatsayisi}""")
 
-    window.minsize(350,350)
-    labelData=Label(text="verileri giriniz :",bg="black",fg="white")
+    window.minsize(600,600)
+    labelData=Label(text="verileri giriniz :",bg="white",fg="pink")
     labelData.place(x=30,y=70)
     inputData=Entry(width=6)
     inputData.place(x=150,y=70)
 
-    addButton=Button(text="ekle",fg="white",bg="black",command=veriEkle)
+    addButton=Button(text="ekle",fg="pink",bg="white",command=veriEkle)
     addButton.place(x=230,y=50)
 
-    temizle = Button(text="verileri sil", fg="white", bg="black", command=verTemizle)
-    temizle.place(x=220, y=90)
 
-    geri = Button(text="<--", fg="white", bg="black",highlightthickness=0,command=main)
+
+    geri = Button(text="<--", fg="pink", bg="white",highlightthickness=0,command=main)
     geri.place(x=10, y=10)
 
-    basitSeriButton = Button(text="basit seri", fg="white", bg="black", command=basitSeri)
+    basitSeriButton = Button(text="basit seri", fg="pink", bg="white", command=basitSeri)
     basitSeriButton.place(x=10, y=180)
 
-    frekansSeriButton = Button(text="frekans seri", fg="white", bg="black", command=frekansSeri)
+    frekansSeriButton = Button(text="frekans seri", fg="pink", bg="white", command=frekansSeri)
     frekansSeriButton.place(x=120, y=180)
 
-    tabloButton = Button(text="tablo", fg="white", bg="black", command=tablo)
+    tabloButton = Button(text="tablo", fg="pink", bg="white", command=tablo)
     tabloButton.place(x=250, y=180)
 
 
-    hoGo = Button(text="H.O - G.O", command=hoGo,fg="white",bg="black")
+    hoGo = Button(text="H.O - G.O", command=hoGo,fg="pink",bg="white")
     hoGo.place(x=220, y=230)
 
     varyansSapmaOms = Button(
 text="""aritmetik,mod,medyan
 varyans,sapma,OMS
-baskililik,carpiklik,degisim""", command=carbasdeg,fg="white",bg="black")
+baskililik,carpiklik,degisim""", command=carbasdeg,fg="pink",bg="white")
     varyansSapmaOms.place(x=10, y=230)
 
     inputData.bind('<Return>', veriEkle)
@@ -593,8 +589,7 @@ def intVeriler():
     removeWidget()
     datas = []
 
-    def verTemizle(e=None):
-        datas.clear()
+
 
     def veriEkle(e=None):
         if (inputData.get() != ""):
@@ -869,37 +864,36 @@ degisim katsayi : {degisimKatsayisi}
 
 
 
-    window.minsize(350, 350)
-    labelData = Label(text="verileri giriniz :", bg="black", fg="white")
+    window.minsize(600, 600)
+    labelData = Label(text="verileri giriniz :", bg="white", fg="pink")
     labelData.place(x=30, y=70)
     inputData = Entry(width=6)
     inputData.place(x=150, y=70)
 
-    addButton = Button(text="ekle", fg="white", bg="black", command=veriEkle)
+    addButton = Button(text="ekle", fg="pink", bg="white", command=veriEkle)
     addButton.place(x=230, y=50)
 
-    temizle = Button(text="verileri sil", fg="white", bg="black", command=verTemizle)
-    temizle.place(x=220, y=90)
 
-    geri = Button(text="<--", fg="white", bg="black", highlightthickness=0, command=main)
+
+    geri = Button(text="<--", fg="pink", bg="white", highlightthickness=0, command=main)
     geri.place(x=10, y=10)
 
-    basitSeriButton = Button(text="basit seri", fg="white", bg="black", command=basitSeri)
+    basitSeriButton = Button(text="basit seri", fg="pink", bg="white", command=basitSeri)
     basitSeriButton.place(x=10, y=180)
 
-    frekansSeriButton = Button(text="frekans seri", fg="white", bg="black", command=frekansSeri)
+    frekansSeriButton = Button(text="frekans seri", fg="pink", bg="white", command=frekansSeri)
     frekansSeriButton.place(x=120, y=180)
 
-    tabloButton = Button(text="tablo", fg="white", bg="black", command=tablo)
+    tabloButton = Button(text="tablo", fg="pink", bg="white", command=tablo)
     tabloButton.place(x=250, y=180)
 
-    hoGo = Button(text="H.O - G.O", command=hoGo,fg="white",bg="black")
+    hoGo = Button(text="H.O - G.O", command=hoGo,fg="pink",bg="white")
     hoGo.place(x=220, y=230)
 
     varyansSapmaOms = Button(
-text="""aritmetik,mod,medyan
-varyans,sapma,OMS
-carpiklik,baskililik,degisim""", command=carbasdeg,fg="white",bg="black")
+text="""aritmetik,  mod,     medyan
+varyans,        sapma,       OMS
+carpiklik,    baskililik,     degisim""", command=carbasdeg,fg="pink",bg="white")
     varyansSapmaOms.place(x=10, y=220)
 
 
@@ -907,28 +901,28 @@ carpiklik,baskililik,degisim""", command=carbasdeg,fg="white",bg="black")
     inputData.bind('<Return>', veriEkle)
 def main():
     removeWidget()
-    window.title("Olasilik Odevi")
-    window.configure(background="black")
-    window.minsize(width=400,height=400)
+    window.title("Olasilik")
+    window.configure(background="white")
+    window.minsize(width=800,height=800)
 
-    basicRandomNumberButton=Button(text="basicRandomNumber",command=basicRandomNumber,fg="white",bg="black")
+    basicRandomNumberButton=Button(text="basit rasgele sayilar",command=basicRandomNumber,fg="pink",bg="white")
     basicRandomNumberButton.place(x=50,y=200)
 
-    systematicNumberButton=Button(text="systematicNumber",command=systematicNumber,fg="white",bg="black")
+    systematicNumberButton=Button(text="sistematik rasgele sayilar",command=systematicNumber,fg="pink",bg="white")
     systematicNumberButton.place(x=200,y=260)
 
-    float = Button(text="float veriler", command=floatVeriler, fg="white", bg="black")
+    float = Button(text="float sayilar", command=floatVeriler, fg="pink", bg="white")
     float.place(x=50, y=280)
 
-    int = Button(text="int veriler", command=intVeriler, fg="white", bg="black")
+    int = Button(text="intteger sayilar", command=intVeriler, fg="pink", bg="white")
     int.place(x=200, y=330)
 
 
-    naivebayesToplamOlasilikButton = Button(text="naive bayes & toplam olasilik", command=naiveBayesToplamOLasilik, fg="white", bg="black")
+    naivebayesToplamOlasilikButton = Button(text="naive bayes & toplam olasilik", command=naiveBayesToplamOLasilik, fg="pink", bg="white")
     naivebayesToplamOlasilikButton.place(x=50, y=130)
 
     kesikliRasgeleDegisenlerinDagilimiButton = Button(text="kesikli Rasgelese Degisenlerin Dagilimi",command=kesikliRasgeleDegisenlerinDagilimi,
-                                      fg="white", bg="black")
+                                      fg="pink", bg="white")
     kesikliRasgeleDegisenlerinDagilimiButton.place(x=50, y=50)
 
     window.mainloop()
